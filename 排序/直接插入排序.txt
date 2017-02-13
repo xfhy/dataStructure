@@ -1,0 +1,18 @@
+//直接插入排序
+void InsertSort(SqList &L)
+{
+	int j;
+	for(int i=2; i<=L.length; i++)   //从第二个开始往表里插
+	{
+		if( LT( L.elem[i],L.elem[i-1] ) )   // <    需要将L.elem[i]插入有序子表
+		{
+			L.elem[0] = L.elem[i];   //复制为哨兵
+			L.elem[i] = L.elem[i-1];  //把i的位置让给上一个元素(大)
+			for( j= i-2; LT( L.elem[0],L.elem[j] ); j--)  //找到合适的位置   如果需要插入的元素比当前元素小,则往前移
+			{
+				L.elem[j+1] = L.elem[j];  //没找到的话,往后移
+			}
+			L.elem[j+1] = L.elem[0];
+		}
+	}
+}

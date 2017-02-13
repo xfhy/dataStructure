@@ -1,0 +1,22 @@
+//折半插入排序
+void BInsertSort(SqList &L)
+{
+	int i,low,high,m,j;
+	for(i=2; i<=L.length; i++)
+	{
+		L.elem[0] = L.elem[i];    //将L.elem[i]暂存到L.elem[0]
+		low = 1;
+		high = i-1;
+		while(low<=high)   //在low...high中折半查找有序插入的位置
+		{
+			m = (low+high)/2;            //折半
+			if( LT(L.elem[0],L.elem[m]) )  //插入点在低半区
+				high = m-1;
+			else                           //插入点在高半区
+				low  = m+1;
+		}
+		for(j=i-1; j>=high+1; j--)    //记录后移
+			L.elem[j+1] = L.elem[j];   
+		L.elem[high+1] = L.elem[0];   //插入
+	}
+}

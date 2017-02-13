@@ -1,0 +1,20 @@
+void SelectSort(SqList &L)
+{
+	ElemType t;
+	int j=1,k,i;
+	for(i=1; i<L.length; i++)
+	{
+		j = i;
+		for(k=i+1; k<=L.length; k++)
+		{
+			if(L.elem[j]>L.elem[k])   //不断的寻找最小值
+				j = k;
+		}
+		if(i!=k)  //找到最小值之后，放到第i个
+		{
+			t = L.elem[i];
+			L.elem[i] = L.elem[j];
+			L.elem[j] = t;
+		}
+	}
+}
